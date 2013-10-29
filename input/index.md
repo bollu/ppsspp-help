@@ -1,3 +1,5 @@
+<!doctype html>
+<html><body>
 <link rel="stylesheet" type="text/css" href="style/stylesheet.css" />
 
 PPSSPP Help
@@ -15,19 +17,19 @@ many more people have contributed improvements.
 + [Changelog](#changelog)
 
 
-<a name = 'how-to-play'/>
+<a name = 'how-to-play'></a>
 
 How to play games:
 ------------------
 To be Constructed
 
-<a name = 'faq'/>
+<a name = 'faq'></a>
 
 FAQ:
 ----
 To be Constructed
 
-<a name = 'settings'/>
+<a name = 'settings'></a>
 
 Game Settings:
 --------------
@@ -402,3 +404,5 @@ Changelog:
 ----------
 
 Version: 0.9.5
+</body>
+</html>
