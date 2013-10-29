@@ -6,7 +6,8 @@ PPSSPP Help
 About:
 ------
 
-PPSSPP Is a PSP emulation project that was started by Henrik Rydgard.
+PPSSPP is a PSP emulation project created by Henrik Rydgard in 2012, and since the start
+many more people have contributed improvements.
 
 + [How to play](#how-to-play)
 + [FAQ](#faq)
@@ -16,13 +17,13 @@ PPSSPP Is a PSP emulation project that was started by Henrik Rydgard.
 
 <a name = 'how-to-play'/>
 
-How to play games: 
+How to play games:
 ------------------
 To be Constructed
 
 <a name = 'faq'/>
 
-FAQ: 
+FAQ:
 ----
 To be Constructed
 
@@ -46,8 +47,10 @@ Disabling it is a speed hack, that may or may not speed up some games, and may c
 
 __Frameskipping__
 
-this option allows frames to be "skipped" if it is taking too much time to draw them. However, this
-will create __screen flickering__. This option can be used to increase performance. 
+Especially on mobile platforms, the graphics rendering is the performance bottleneck. Hence, speed
+can be improved by simply skipping the rendering process on every other frame, or more. The drawback
+is of course that the framerate will decrease, and if you combine it with multithreading, there may
+be flickering issues. The setting to control this is called Frameskipping.
 
 __Force 60 FPS or less__
 
@@ -144,11 +147,22 @@ Types of Upscale algorithms:
 
 *`Hybrid + Bicubic`*:  [TODO - explain]
 
+PSP games generally have quite low texture detail, as more isn't needed due to the low resolution of
+the PSP display, and the lack of RAM and VRAM available. The Texture Scaling feature uses a high quality
+scaling filter to give the illusion of sharper texture detail. Doesn't work great with all art styles
+but some games are very much improved.
+
+There is generally no point in going beyond 3x texture scaling unless you are running at very high
+resolutions.
+
 #### Texture Filtering ####
 
 __Anisotropic Filtering__: [TODO]
 
 __Texture Filter__: [TODO]
+
+PSP games were made to run at 480x272, and rendering them at other resolutions sometimes causes artifacts
+like little lines at the boundaries of textures. This can sometimes be worked around by tweaking filtering settings.
 
 
 #### Hack Settings #### *most of these option break games. be careful*
@@ -165,6 +179,13 @@ __Always Depth write__
 
 __Texture Coord Speedhack__
 [TODO - explain what this does]
+
+#### Hack Settings ####
+
+These are workarounds for things we don't emulate properly, or speed improvements that may cause artifacts.
+
+Disabling Alpha Test greatly improves performance on PowerVR GPUs (common on mobile) as that feature is
+extremely slow on them.
 
 #### Overlay Information ####
 
