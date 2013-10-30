@@ -1,6 +1,4 @@
 
-
-
 <link rel="stylesheet" type="text/css" href="style/stylesheet.css" />
 
 
@@ -43,10 +41,34 @@ Game Settings:
 
 #### Rendering Mode ####
 
-__Mode__
+The PSP can render to any location in its VRAM and use as either the scanout buffer (what you see on the screen) or textures. Many games use this to implement special effects, or simply to implement 30fps (you need to show the same buffer twice). We simulate this by allocating an OpenGL FBO for every PSP framebuffer location.
 
-the PSP can render to any location in its VRAM and use as either the scanout buffer (what you see on the screen) or textures. Many games use this to implement special effects, or simply to implement 30fps (you need to show the same buffer twice). We simulate this by allocating an OpenGL FBO for every PSP framebuffer location.
-Disabling it is a speed hack, that may or may not speed up some games, and may cause graphical artefacts and/or screen flickering. Another effect of disabling this option is that you lose the ability to do 2x supersampling.
+__Non-buffered mode__
+
+Disabling the buffered mode is a speed hack that may or may not speed up some games, and may cause graphical artefacts and/or screen flickering. Another effect of disabling this option is that you lose the ability to do 2x supersampling.
+
+Due to emulation bugs, some games are improved in non-buffered mode.
+* __Wipeout Pulse and Pure__ It fixes the overbright issue.
+
+__Buffered mode__
+
+This is the standard mode.
+
+__Read framebuffers to memory (CPU)__
+
+This option is a solution to fix some graphics issues in some games, but this option is slow. Games that do not need it may be worse with this option.
+
+* __Breath of Fire 3__
+* __Danganronpa__
+* __Soul Calibur: Broken Destiny__ It allows to take photos of created characters.
+* __The Legend of Heroes: Trails in the Sky__ It fixes the transparent menus and the screenshots to create icons of saved games.
+* __The Third Birthday__
+* __Ys Seven__ It fixes the minimap, the transparency in the full map, the screenshots to create icons of saved games and the darkness in Flame Sanctum.
+
+__Read framebuffers to memory (GPU)__
+
+This is the same as the option above, but this is faster because it uses GPU instead of CPU. However, it only works on PC with Nvidia cards.
+
 
 #### Framerate control ####
 
@@ -59,10 +81,14 @@ be flickering issues. The setting to control this is called Frameskipping.
 
 __Force 60 FPS or less__
 
-Some games (such as god of war) have a bug related to rendering. This hack helps keep these games in check and makes them playable.
+Some games (such as both __God of War__ games) have a bug related to rendering. This hack helps to keep these games in check and makes them playable.
 
 __Alternative speed__
-[don't know what this does off the top of my head. will have to look and see]
+
+This option allows to play the game at a constant specific speed that you can choose. 100% is the normal speed.
+You can choose 200% to make the game running twice faster instead of unlimited speed if the computer (or device) is powerful enough.
+Speeds below 100% allows to play in slow motion.
+
 
 #### Features ####
 
@@ -106,7 +132,8 @@ Disabling mipmapping will grant a performance increase, but will cause PPSSPP to
 #### Performance ####
 
 __Rendering Resolution__
-[TODO]
+Allows to choose the resolution to render 3D graphics. It improves the graphics in larger screen, because the real PSP is small.
+The higher the resolution, less pixelated the 3D models will look.
 
 __Vsync__ 
 
@@ -124,7 +151,7 @@ This gives a performance boost when enabled
 
 __Low quality Spine / Bezier Curves__
 
-Computers use equations knows as Bezier Curves to draw curves. However, this equation is computationally intensive. Hence, a low quality version of this equation will give better performance, but looks poorer. Enabling this option will provide a performance boost at the cost of graphical fidelity.
+Computers use equations known as Bezier Curves to draw curves. However, this equation is computationally intensive. Hence, a low quality version of this equation will give better performance, but looks poorer. Enabling this option will provide a performance boost at the cost of graphical fidelity.
  
 
 #### Texture Scaling ####
@@ -135,8 +162,7 @@ the PSP display, and the lack of RAM and VRAM available. The Texture Scaling fea
 scaling filter to give the illusion of sharper texture detail. Doesn't work great with all art styles
 but some games are very much improved.
 
-There is generally no point in going beyond 3x texture scaling unless you are running at very high
-resolutions.
+There is generally no point in going beyond 3x texture scaling unless you are running at very high resolutions.
 
 __Upscale Level__
 
@@ -171,27 +197,25 @@ PSP games were made to run at 480x272, and rendering them at other resolutions s
 like little lines at the boundaries of textures. This can sometimes be worked around by tweaking filtering settings.
 
 
-#### Hack Settings #### *most of these option break games. be careful*
+#### Hack Settings ####
+
+These options are workarounds for things we don't emulate properly in some specific games, or speed improvements that may cause problems. Be careful, most of these options break games.
 
 __Disable Alpha Test__
-This has been shown to create a performance gain in devices which use PowerVR chipsets.
-[TODO - explain what this does]
+Disabling Alpha Test greatly improves performance on PowerVR GPUs (common on mobile) as that feature is extremely slow on them.
 
 __Disable Stencil Test__
 [TODO - explain what this does]
 
-__Always Depth write__
+__Always Depth Write__
 [TODO - explain what this does]
+
+* __Saint Seiya Omega__ It fixes invisible characters.
 
 __Texture Coord Speedhack__
 [TODO - explain what this does]
 
-#### Hack Settings ####
 
-These are workarounds for things we don't emulate properly, or speed improvements that may cause artifacts.
-
-Disabling Alpha Test greatly improves performance on PowerVR GPUs (common on mobile) as that feature is
-extremely slow on them.
 
 #### Overlay Information ####
 
@@ -201,9 +225,9 @@ Shows performance counters at the top right corner.
 
 Types of Counters:
 
-*`FPS`*: Shows the number of frames per second being rendered
+*`FPS`*: Shows the number of frames per second being rendered.
 
-*`Speed`*: Shows the [i'm not sure, virtual processor speed?]
+*`Speed`*: Shows the speed which the game is running at. 100% is the normal speed.
 
 *`Both`*: Shows both the FPS and the Speed
 
@@ -230,14 +254,13 @@ __SFX volume__
 Controls volume of special effects. 
 
 __BGM volume__
-Controls background volume
+Controls background volume.
 
 __Enable Sound__
-Enable and disable all sounds
+Enable and disable all sounds.
 
 __Low latency audio__
-An experimental feature that might help reduce audio lag. It also generally
-causes stuttering and other audio distortion  
+An experimental feature that might help reduce audio lag. It also generally causes stuttering and other audio distortion.
 
 <!-- Controls -->
 
@@ -294,7 +317,7 @@ Change the default language of PPSSPP.
 
 __Fast Memory (Unstable, use with caution)__ *option only applied after a reset*
 
- This option changes PPSSPP such that that all memory accesses the game makes is considered valid. This, there is an increase in speed. However, this can also *result in crashes* if a game does an invalid memory access. 
+This option changes PPSSPP such that that all memory accesses the game makes is considered valid. This, there is an increase in speed. However, this can also *result in crashes* if a game does an invalid memory access. 
 
 __Multithreaded (Unstable, use with caution)__
 
@@ -335,8 +358,7 @@ Used to enable or disable cheats in PPSSPP.
 
 ##### Developer Tools: #####
 
-This section of PPSSPP contains tools that are useful for PPSSPP developers. Be careful when
-changing options in this section.
+This section of PPSSPP contains tools that are useful for PPSSPP developers. Be careful when changing options in this section.
 
 ###### General:
 
