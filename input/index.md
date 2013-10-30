@@ -1,5 +1,6 @@
-<!--doctype html>
-<html><body-->
+
+
+
 <link rel="stylesheet" type="text/css" href="style/stylesheet.css" />
 
 
@@ -129,6 +130,14 @@ Computers use equations knows as Bezier Curves to draw curves. However, this equ
 #### Texture Scaling ####
 Texture scaling improves texture detail. However, it is a very expensive process and can cause slowdown.
 
+PSP games generally have quite low texture detail, as more isn't needed due to the low resolution of
+the PSP display, and the lack of RAM and VRAM available. The Texture Scaling feature uses a high quality
+scaling filter to give the illusion of sharper texture detail. Doesn't work great with all art styles
+but some games are very much improved.
+
+There is generally no point in going beyond 3x texture scaling unless you are running at very high
+resolutions.
+
 __Upscale Level__
 
 The type of Upscale to use.
@@ -151,13 +160,6 @@ Types of Upscale algorithms:
 
 *`Hybrid + Bicubic`*:  [TODO - explain]
 
-PSP games generally have quite low texture detail, as more isn't needed due to the low resolution of
-the PSP display, and the lack of RAM and VRAM available. The Texture Scaling feature uses a high quality
-scaling filter to give the illusion of sharper texture detail. Doesn't work great with all art styles
-but some games are very much improved.
-
-There is generally no point in going beyond 3x texture scaling unless you are running at very high
-resolutions.
 
 #### Texture Filtering ####
 
@@ -404,7 +406,7 @@ By default, the PSP uses the __`X`__ action button to confirm actions. This can 
 
 
 
-<a name = 'changelog' />
+<a name = 'changelog'></a>
 
 
 Changelog:
@@ -516,7 +518,3 @@ Changelog:
 ##Version 0.1:##
 
 * First release
-
-
-<!--/body>
-</html-->
