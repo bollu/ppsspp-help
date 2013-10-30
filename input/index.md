@@ -1,6 +1,8 @@
-<!doctype html>
-<html><body>
+<!--doctype html>
+<html><body-->
 <link rel="stylesheet" type="text/css" href="style/stylesheet.css" />
+
+
 
 PPSSPP Help
 ===========
@@ -371,6 +373,9 @@ __Save Language ini__
 
 <!-- end Developer options-->
 
+*****
+
+
 #### PSP Settings ####
 
 __Daylight Savings__
@@ -398,11 +403,120 @@ __Conformation Button__
 By default, the PSP uses the __`X`__ action button to confirm actions. This can be changed to __`O`__.
 
 
-<a name = 'changelog'/>
+
+<a name = 'changelog' />
+
 
 Changelog:
 ----------
 
-Version: 0.9.5
-</body>
-</html>
+##Version: 0.9.5##
+
+* Many, many emulation fixes:
+  - bezier/spline curve support, fixing LocoRoco and others
+  - stencil clear emulation, fixing Final Fantasy IV text
+* Performance improvements in some games
+* Post-processing shaders like FXAA, scanlines, vignette
+* More solid save states (we will try to keep them working from now on. Save states only upgrade forward,
+  not backward to older versions though).
+* Change render resolution independently of window size
+* Massive debugger improvements
+* Win32 menu bar is now translatable
+* Multiple UI bugs were fixed, and the UI instantly changes when a new language is selected
+* Win32: Ability to store PPSSPP's config files and memory stick files in places other than the same directory
+* Android-x86 support
+* Unofficial port for modified Xbox 360 consoles
+* Atrac3+ plugin no longer required. Symbian now supports Atrac3+ audio.
+* Symbian audio and ffmpeg is now threaded for more consistent media processing.
+* Haptic feedback support for mobile devices.
+* Accurate system information for mobile devices.
+* Qt audio has been fixed.
+* Analog controller support for Blackberry.
+
+
+##Version: 0.9.1##
+
+* Bugfix release
+
+
+##Version: 0.9.0##
+
+* Much improved control mapping, and autoconfig for a few devices like Shield
+* Large speed boosts in many games
+* Huge improvements to our internal PSP debugger by Kingcom!
+* A number of new games became compatible, such as Final Fantasy Tactics which just has some audio issues left.
+* A completely redesigned user interface, unlike the previous static one this one can grow with the emulator and has keyboard/controller navigation support, for the full lean-back experience!
+* Improved frameskipping, increasing playability on slower devices.
+
+
+##Version: 0.8.1##
+
+* A crash fix release, fixing a couple of possible crashes around downloading the Atrac3+ plugin.
+
+
+##Version: 0.8.0##
+
+* Full video and audio playback in most games (audio requires an optional plugin)
+* Huge increases in compatibility! Final Fantasy: Crisis Core is fully playable on fast devices, for example.
+* Lots of little things like easy screenshot taking, the beginnings of a cheat feature, etc
+
+
+##Version 0.7.6:##
+
+* Serious bugfix which improved games compatibility across the board. 
+* Multi lingual support for PPSSPP UI. 
+
+##Version 0.7.5:##
+
+* Many more games run and some games run faster
+  - The God of War games should now run well on modest PCs and for example the Monster Hunter games are becoming playable on fast phones (although without sound).
+
+* Improved UI
++ Recent list and game icons in the game selector
+
+
+##Version 0.7.0:##
+
+* Compatibility has gone up dramatically
+* Speed has increased drastically (especially on mobile)
+* Horizontal tilt control
+* Some newly playable games are:
+  - God of War (very slow though, but this will probably be fixed in the near future)
+  - Virtua Tennis
+  - Megaman: Maverick Hunter X
+  - Saint Seiya
+  - Ace Combat X goes in-game
+
+
+##Version 0.6.0:##
+
+* Has a preliminary ARM JIT (greatly boosts speed on Android and other ARM platforms)
+* Vertex caching (improves performance quite a bit)
+
+##Version 0.5.0:##
+
+* Large compatibility improvements
+* Much better audio
+* Many graphics fixes
+* Savegames and savestates working in many games
+
+
+##Version 0.4.0:##
+
+* Graphics improvements
+* Compatibility improvements
+
+
+##Version 0.3.1:##
+
+* Many fixes
+* More games playable
+
+
+##Version 0.1:##
+
+* First release
+
+
+<!--/body>
+</html-->
