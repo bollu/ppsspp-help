@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" type="text/css" href="style/stylesheet.css" />
 
 
@@ -41,18 +40,16 @@ Game Settings:
 
 #### Rendering Mode ####
 
-The PSP can render to any location in its VRAM and use as either the scanout buffer (what you see on the screen) or textures. Many games use this to implement special effects, or simply to implement 30fps (you need to show the same buffer twice). We simulate this by allocating an OpenGL FBO for every PSP framebuffer location.
+__Buffered mode__
+
+This is the standard mode. The PSP can render to any location in its VRAM and use as either the scanout buffer (what you see on the screen) or textures. Many games use this to implement special effects, or simply to implement 30fps (you need to show the same buffer twice). We simulate this by allocating an OpenGL FBO for every PSP framebuffer location.
 
 __Non-buffered mode__
 
-Disabling the buffered mode is a speed hack that may or may not speed up some games, and may cause graphical artefacts and/or screen flickering. Another effect of disabling this option is that you lose the ability to do 2x supersampling.
+Disabling the buffered mode is a speed hack that may or may not speed up some games, and may cause graphical artefacts and/or screen flickering. Another effect of disabling this option is that you lose the ability to change render resolution independently of window size.
 
 Due to emulation bugs, some games are improved in non-buffered mode.
 * __Wipeout Pulse and Pure__ It fixes the overbright issue.
-
-__Buffered mode__
-
-This is the standard mode.
 
 __Read framebuffers to memory (CPU)__
 
@@ -67,7 +64,7 @@ This option is a solution to fix some graphics issues in some games, but this op
 
 __Read framebuffers to memory (GPU)__
 
-This is the same as the option above, but this is faster because it uses GPU instead of CPU. However, it only works on PC with Nvidia cards.
+This is the same as the option above, but this is faster because it uses GPU instead of CPU. However, it only works on PC and optimized for Nvidia cards.
 
 
 #### Framerate control ####
@@ -99,23 +96,27 @@ Allows one to use custom shaders that add effects such as bloom and grayscale.
 
 Types of shaders:
 
-*`Off`:*: Disable shaders altogether
+*`Off`*: Disable shaders altogether
 
-*`FXAA Antialiasing:`*
+*`FXAA Antialiasing`*: Reduces jagged edges on 3D objects using Fast Approximate Anti-Aliasing (FXAA) algorithm
 
-*`Natural Colours`:*
+*`Natural Colours`*: Slightly enhances contrast and colours
 
-*`Grayscale`:* Renders in grayscale (black and white)
+*`Grayscale`*: Renders in grayscale (black and white)
 
-*`Vignette`:* Renders with a sepia tone (old-school photograph look)
+*`Vignette`*: Renders with a sepia tone (old-school photograph look)
 
-*`Inverse Colors`:* Inverts Colors
+*`Bloom`*: Enhances brightness and gives glow like effect
 
-*`Scanlines`:* Creates a CRT screen like effect by drawing horizontal lines
+*`Sharpen`*: Sharpens the whole screen
 
-*`4xHqGLSL`:* [idk]
+*`Inverse Colors`*:Inverts Colors
 
-*`AA-Color`:* [idk]
+*`Scanlines`*: Creates a CRT screen like effect by drawing horizontal lines and simulating screen tint
+
+*`4xHqGLSL`*: Enhances spirites by smoothing pixels and scaling textures
+
+*`AA-Color`*: Reduces jagged edges on screen with additional contrast and colours
 
 <!-- end shaders -->
 
@@ -168,11 +169,13 @@ __Upscale Level__
 
 The type of Upscale to use.
 
-*`Off`:*: Disable Texture Upscale
+*`Auto`*: Scales textures dependently of rendering resolution
 
-*`2x`*: [TODO - explain]
+*`Off`*: Disable Texture Upscale
 
-*`3x`*: [TODO - explain]
+*`2x`*: Scales textures upto 2x of original texture size
+
+*`3x`*: Scales textures upto 3x of original texture size
 
 __Upscale Type__
 
