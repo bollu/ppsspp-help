@@ -44,6 +44,8 @@ __Buffered mode__
 
 This is the standard mode. The PSP can render to any location in its VRAM and use as either the scanout buffer (what you see on the screen) or textures. Many games use this to implement special effects, or simply to implement 30fps (you need to show the same buffer twice). We simulate this by allocating an OpenGL FBO for every PSP framebuffer location.
 
+Note: This option is mandatory for some games like __Grand Theft Auto Liberty City Stories__ and __Grand Theft Auto Vice City Stories__ that shows black screen without it.
+
 __Non-buffered mode__
 
 Disabling the buffered mode is a speed hack that may or may not speed up some games, and may cause graphical artefacts and/or screen flickering. Another effect of disabling this option is that you lose the ability to change render resolution independently of window size.
@@ -114,6 +116,8 @@ Types of shaders:
 
 *`Scanlines`*: Creates a CRT screen like effect by drawing horizontal lines and simulating screen tint
 
+*`Color`*: Creates a cartoon like effect
+
 *`4xHqGLSL`*: Enhances spirites by smoothing pixels and scaling textures
 
 *`AA-Color`*: Reduces jagged edges on screen with additional contrast and colours
@@ -127,7 +131,7 @@ Causes PPSSPP to stretch it's size to that of the display. This destroys the asp
 
 __Mipmapping__
 
-Disabling mipmapping will grant a performance increase, but will cause PPSSPP to look slightly blurry as a result. [TODO - explain mipmapping]
+Enabling mipmapping will grant a performance increase, but will cause PPSSPP to look slightly blurry as a result, as mipmapping pre-calculates the filtered textures and store them to use in games.
 
 
 #### Performance ####
@@ -146,8 +150,7 @@ Vertex Shader uses to make all the complex calculations that are required for re
 
 __Vertex Cache__
 
-This gives a performance boost when enabled
-[TODO - explain caching theory >_>" . This maybe futile...]
+This gives a performance boost when enabled as it skips few calculations on geometry, disable it if you see strange graphical glitches. Performance improvement will depend on game and GPU.
 
 
 __Low quality Spine / Bezier Curves__
@@ -183,21 +186,32 @@ There are various algorithms that are used to upscale. Here, a particular algori
 
 Types of Upscale algorithms:
 
-*`Hybrid`*:  [TODO - explain]
+*`xBRZ`*:  Scales the texture based on pattern recognition similar to HQx.
 
-*`Bicubic`*:  [TODO - explain]
+*`Hybrid`*: Scales the textures.... [TODO: the effect looks familiar to Bicubic :/]
 
-*`Hybrid + Bicubic`*:  [TODO - explain]
+*`Bicubic`*:  Scales the textures using spline equations.
 
+*`Hybrid + Bicubic`*:  Combines the effect of Hybrid and Bicubic.
+
+__Deposterize__ [TODO: Really don't know what it do :/]
 
 #### Texture Filtering ####
 
-__Anisotropic Filtering__: [TODO]
-
-__Texture Filter__: [TODO]
-
 PSP games were made to run at 480x272, and rendering them at other resolutions sometimes causes artifacts
 like little lines at the boundaries of textures. This can sometimes be worked around by tweaking filtering settings.
+
+__Anisotropic Filtering__: [TODO]
+
+__Texture Filter__
+
+*`Auto`*: Treat filtering on objects just like original PSP.
+
+*`Nearest`*: Forces Nearest Filtering on the whole screen. It sharpens the 2D spirites and text, but the 3D graphics looks worse with it.
+
+*`Linear`*: Forces Bilinear Filtering on the whole screen. Basically smoothes the HUD and 2D, but can cause artifacts.
+
+*`Linear on FMV`*: Forces Bilinear Filtering on videos only.
 
 
 #### Hack Settings ####
@@ -205,19 +219,19 @@ like little lines at the boundaries of textures. This can sometimes be worked ar
 These options are workarounds for things we don't emulate properly in some specific games, or speed improvements that may cause problems. Be careful, most of these options break games.
 
 __Disable Alpha Test__
-Disabling Alpha Test greatly improves performance on PowerVR GPUs (common on mobile) as that feature is extremely slow on them.
+Disabling Alpha Test greatly improves performance on PowerVR GPUs (common on mobile) as that feature is extremely slow on them. While it gives slight performance improvement on other devices.
 
 __Disable Stencil Test__
-[TODO - explain what this does]
+Enabling this will disable stencil test on objects. [TODO: explain which game requires it to work properly]
 
 __Always Depth Write__
-[TODO - explain what this does]
+
+Enabling this simply assumes that all objects will depth write, causing severe graphical glitches on many games. Few games require this option enabled to work properly.
 
 * __Saint Seiya Omega__ It fixes invisible characters.
 
 __Texture Coord Speedhack__
-[TODO - explain what this does]
-
+Enabling this greatly improves performance as it pre-scales the texture coordinates instead of doing it in real time, But can cause severe graphical glitches. Please do not report bugs on forums with this option enabled.
 
 
 #### Overlay Information ####
