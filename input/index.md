@@ -60,6 +60,7 @@ This option is a solution to fix some graphics issues in some games, but this op
 
 * __Breath of Fire 3__
 * __Danganronpa__
+* __Final Fantasy Tactics: The War of the Lions__ It fixes the transparency in menus open in the map.
 * __Soul Calibur: Broken Destiny__ It allows to take photos of created characters.
 * __The Legend of Heroes: Trails in the Sky__ It fixes the transparent menus and the screenshots to create icons of saved games.
 * __The Third Birthday__
