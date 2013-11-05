@@ -44,14 +44,15 @@ __Buffered mode__
 
 This is the standard mode. The PSP can render to any location in its VRAM and use as either the scanout buffer (what you see on the screen) or textures. Many games use this to implement special effects, or simply to implement 30fps (you need to show the same buffer twice). We simulate this by allocating an OpenGL FBO for every PSP framebuffer location.
 
-Note: This option is mandatory for some games like __Grand Theft Auto Liberty City Stories__ and __Grand Theft Auto Vice City Stories__ that shows black screen without it.
+Note: This option is mandatory for many games, including __Grand Theft Auto Liberty City Stories__ and __Grand Theft Auto Vice City Stories__, which show black screen without it.
 
 __Non-buffered mode__
 
-Disabling the buffered mode is a speed hack that may or may not speed up some games, and may cause graphical artefacts and/or screen flickering. Another effect of disabling this option is that you lose the ability to change render resolution independently of window size.
+Disabling the buffered mode is a speed hack that may or may not speed up some games, and may cause graphical glitches and/or screen flickering. Another effect of disabling this option is that you lose the ability to change render resolution independently of window size.
 
 Due to emulation bugs, some games are improved in non-buffered mode.
-* __Wipeout Pulse and Pure__ It fixes the overbright issue.
+* __Sword Art Online__ It fixes the overbrightness issue.
+* __Wipeout Pulse and Pure__ It fixes the overbrightness issue.
 
 __Read framebuffers to memory (CPU)__
 
@@ -86,7 +87,7 @@ __Alternative speed__
 
 This option allows to play the game at a constant specific speed that you can choose. 100% is the normal speed.
 You can choose 200% to make the game running twice faster instead of unlimited speed if the computer (or device) is powerful enough.
-Speeds below 100% allows to play in slow motion.
+Speeds below 100% allow to play in slow motion.
 
 
 #### Features ####
@@ -98,29 +99,29 @@ Allows one to use custom shaders that add effects such as bloom and grayscale.
 
 Types of shaders:
 
-*`Off`*: Disable shaders altogether
+*`Off`*: Disable shaders altogether.
 
-*`FXAA Antialiasing`*: Reduces jagged edges on 3D objects using Fast Approximate Anti-Aliasing (FXAA) algorithm
+*`FXAA Antialiasing`*: Reduces jagged edges on 3D objects using Fast Approximate Anti-Aliasing (FXAA) algorithm.
 
-*`Natural Colours`*: Slightly enhances contrast and colours
+*`Natural Colours`*: Slightly enhances contrast and colours.
 
-*`Grayscale`*: Renders in grayscale (black and white)
+*`Grayscale`*: Renders in grayscale (black and white).
 
-*`Vignette`*: Renders with a sepia tone (old-school photograph look)
+*`Vignette`*: Renders with a sepia tone (old-school photograph look).
 
-*`Bloom`*: Enhances brightness and gives glow like effect
+*`Bloom`*: Enhances brightness and gives glow like effect.
 
-*`Sharpen`*: Sharpens the whole screen
+*`Sharpen`*: Sharpens the whole screen.
 
-*`Inverse Colors`*:Inverts Colors
+*`Inverse Colors`*: Inverts the colors.
 
-*`Scanlines`*: Creates a CRT screen like effect by drawing horizontal lines and simulating screen tint
+*`Scanlines`*: Creates a CRT screen like effect by drawing horizontal lines and simulating screen tint.
 
-*`Color`*: Creates a cartoon like effect
+*`Color`*: Creates a cartoon-like effect.
 
-*`4xHqGLSL`*: Enhances spirites by smoothing pixels and scaling textures
+*`4xHqGLSL`*: Enhances sprites by smoothing pixels and scaling textures.
 
-*`AA-Color`*: Reduces jagged edges on screen with additional contrast and colours
+*`AA-Color`*: Reduces jagged edges on screen with additional contrast and colours.
 
 <!-- end shaders -->
 
@@ -137,8 +138,10 @@ Enabling mipmapping will grant a performance increase, but will cause PPSSPP to 
 #### Performance ####
 
 __Rendering Resolution__
-Allows to choose the resolution to render 3D graphics. It improves the graphics in larger screen, because the real PSP is small.
-The higher the resolution, less pixelated the 3D models will look.
+
+Allows to choose the resolution to render 3D graphics. The PSP resolution is 480 x 272 and this option scales the resolution N times in each dimension, for instance, 2X scales the resolution to 960 x 544.
+Consequently, it improves the graphics in larger screen, because the real PSP is small. The higher the resolution, less pixelated the 3D models will look.
+Setting it to *Auto* will make PPSSPP use the resolution that is near the window size or the resolution of your screen when playing in fullscreen.
 
 __Vsync__ 
 
@@ -146,7 +149,11 @@ The display of your device refreshes many times per second (usually 60 times per
 
 __Hardware Transform__
 
-Vertex Shader uses to make all the complex calculations that are required for rendering in the hardware (GPU or Video Card) instead of doing it on the processor. It tends to be much faster and gives a performance boost when enabled.
+Vertex Shader uses it to make all the complex calculations that are required for rendering in the hardware (GPU or Video Card) instead of doing it on the processor. It tends to be much faster and gives a performance boost when enabled.
+However, due to bugs, some games are fixed when this option is disabled:
+* __Dangan Ronpa__ It fixes the crashes.
+* __Tekken 5 Dark Resurrection__ It fixes the health bars.
+
 
 __Vertex Cache__
 
@@ -163,7 +170,7 @@ Texture scaling improves texture detail. However, it is a very expensive process
 
 PSP games generally have quite low texture detail, as more isn't needed due to the low resolution of
 the PSP display, and the lack of RAM and VRAM available. The Texture Scaling feature uses a high quality
-scaling filter to give the illusion of sharper texture detail. Doesn't work great with all art styles
+scaling filter to give the illusion of sharper texture detail. Doesn't work great with all art styles,
 but some games are very much improved.
 
 There is generally no point in going beyond 3x texture scaling unless you are running at very high resolutions.
@@ -172,13 +179,13 @@ __Upscale Level__
 
 The type of Upscale to use.
 
-*`Auto`*: Scales textures dependently of rendering resolution
+*`Auto`*: Scales textures dependently of rendering resolution.
 
-*`Off`*: Disable Texture Upscale
+*`Off`*: Disable Texture Upscale.
 
-*`2x`*: Scales textures upto 2x of original texture size
+*`2x`*: Scales textures upto 2x of original texture size.
 
-*`3x`*: Scales textures upto 3x of original texture size
+*`3x`*: Scales textures upto 3x of original texture size.
 
 __Upscale Type__
 
@@ -194,22 +201,26 @@ Types of Upscale algorithms:
 
 *`Hybrid + Bicubic`*:  Combines the effect of Hybrid and Bicubic.
 
-__Deposterize__ [TODO: Really don't know what it do :/]
+__Deposterize__
+
+[TODO: Really don't know what it do :/]
 
 #### Texture Filtering ####
 
-PSP games were made to run at 480x272, and rendering them at other resolutions sometimes causes artifacts
+PSP games were made to run at 480x272, and rendering them at other resolutions sometimes causes problems
 like little lines at the boundaries of textures. This can sometimes be worked around by tweaking filtering settings.
 
-__Anisotropic Filtering__: [TODO]
+__Anisotropic Filtering__:
+
+[TODO]
 
 __Texture Filter__
 
 *`Auto`*: Treat filtering on objects just like original PSP.
 
-*`Nearest`*: Forces Nearest Filtering on the whole screen. It sharpens the 2D spirites and text, but the 3D graphics looks worse with it.
+*`Nearest`*: Forces Nearest Filtering on the whole screen. It sharpens the 2D sprites and text, but the 3D graphics looks worse with it.
 
-*`Linear`*: Forces Bilinear Filtering on the whole screen. Basically smoothes the HUD and 2D, but can cause artifacts.
+*`Linear`*: Forces Bilinear Filtering on the whole screen. Basically smoothes the HUD and 2D graphics, but can cause artifacts.
 
 *`Linear on FMV`*: Forces Bilinear Filtering on videos only.
 
@@ -219,9 +230,11 @@ __Texture Filter__
 These options are workarounds for things we don't emulate properly in some specific games, or speed improvements that may cause problems. Be careful, most of these options break games.
 
 __Disable Alpha Test__
+
 Disabling Alpha Test greatly improves performance on PowerVR GPUs (common on mobile) as that feature is extremely slow on them. While it gives slight performance improvement on other devices.
 
 __Disable Stencil Test__
+
 Enabling this will disable stencil test on objects. [TODO: explain which game requires it to work properly]
 
 __Always Depth Write__
@@ -231,7 +244,8 @@ Enabling this simply assumes that all objects will depth write, causing severe g
 * __Saint Seiya Omega__ It fixes invisible characters.
 
 __Texture Coord Speedhack__
-Enabling this greatly improves performance as it pre-scales the texture coordinates instead of doing it in real time, But can cause severe graphical glitches. Please do not report bugs on forums with this option enabled.
+
+Enabling this greatly improves performance as it pre-scales the texture coordinates instead of doing it in real time, but can cause severe graphical glitches. Please do not report bugs on forums with this option enabled.
 
 
 #### Overlay Information ####
@@ -246,7 +260,7 @@ Types of Counters:
 
 *`Speed`*: Shows the speed which the game is running at. 100% is the normal speed.
 
-*`Both`*: Shows both the FPS and the Speed
+*`Both`*: Shows both the FPS and the Speed.
 
 __Show debug statistics__
 
@@ -288,7 +302,7 @@ Rebind PSP controls to keyboard, game pad and virtual buttons.
 
 __Haptic Feedback__
 If this is enabled, the device will vibrate every time a button is pressed.
-Useful of mobile devices for tactile feedback
+Useful in mobile devices for tactile feedback.
 
 
 #### On-screen touch controls: ####
@@ -298,17 +312,17 @@ devices such as phones and tablets with no hardware buttons.
 
 __Button Opacity__
 
-Used to change the opacity of buttons. An opacity of 0 is completely transparent.
+It is used to change the opacity of buttons. An opacity of 0 is completely transparent.
 Opacity of 100 is fully opaque
 
 __Buttons scaling__
 
-Used to change the size of buttons. Higher the value of button scaling, larger
+It is used to change the size of buttons. Higher the value of button scaling, larger
 the buttons will be.
 
 #### Custom Layout: ####
 
-Used to move on-screen buttons to custom positions.
+It is used to move on-screen buttons to custom positions.
 
 Hold down a button and drag the button to the desired location. Then click on
 Back to save changes.
@@ -347,11 +361,11 @@ __I/O on thread (Unstable, use with caution)__
 
 __Change CPU Clock__
 
-This option controls the Virtual CPU clock. When it is enabled initially, the Virtual CPU will run at 222Mhz (the standard speed of PSP CPU). This speed can be increased or decreased. 
+This option controls the Virtual CPU clock. When it is enabled initially, the Virtual CPU will run at 222Mhz (the standard speed of PSP CPU). This speed can be increased or decreased.
 
-Decreasing the clock, you will get more percents (%) on speed, but less FPS. 
+Decreasing the clock, you will get more percents (%) on speed, but less FPS.
 
-Increasing the clock will cause more FPS and less percent (%). 
+Increasing the clock will cause more FPS and less percent (%).
 
 This happens because when the virtual clock is high, it increase the strain on your system, and thus PPSSPP becomes slower and the total game speed will drop.
 <!-- copy-pasted explanation. need a better one. Linky - http://forums.ppsspp.org/showthread.php?tid=5352 -->
@@ -365,7 +379,7 @@ __Atomic Audio Locks__
 
 __Enable Cheats__
 
-Used to enable or disable cheats in PPSSPP.
+It is used to enable or disable cheats in PPSSPP.
 
 [This is something I know nothing about. Someone who actually knows about this (maybe UnknownBrackets) will have to edit this section]
 
@@ -420,11 +434,11 @@ __Save Language ini__
 #### PSP Settings ####
 
 __Daylight Savings__
-Used to enable and disable daylight savings in PPSSPP's time calculation.
+It is used to enable and disable daylight savings in PPSSPP's time calculation.
 
 __Date Format__
 
-Used to change the date format. Supported formats are:
+It is used to change the date format. Supported formats are:
 
 
 __`YYYYMMDD`__ - eg: 2013 12 01 (1st December 2013)
@@ -433,11 +447,11 @@ __`MMDDYYYY`__ - eg: 12 01 2013 (1st December 2013)
 
 __`DDMMYYYY`__ - eg: 01 12 2013 (1st December 2013)
 
-[Idk where this is used. Should write about what this is for]
+[TODO: Idk where this is used. Should write about what this is for]
 
 __Time format__
 
-Used to change the time format. Supported formats are __`12 hours`__ and __`24 hours`__
+It is used to change the time format. Supported formats are __`12 hours`__ and __`24 hours`__
 
 __Conformation Button__
 
