@@ -44,7 +44,7 @@ __Buffered mode__
 
 This is the standard mode. The PSP can render to any location in its VRAM and use as either the scanout buffer (what you see on the screen) or textures. Many games use this to implement special effects, or simply to implement 30fps (you need to show the same buffer twice). We simulate this by allocating an OpenGL FBO for every PSP framebuffer location.
 
-Note: This option is mandatory for many games, including __Grand Theft Auto Liberty City Stories__ and __Grand Theft Auto Vice City Stories__, which show black screen without it.
+> Note: This option is mandatory for many games, including __Grand Theft Auto Liberty City Stories__ and __Grand Theft Auto Vice City Stories__, which show black screen without it.
 
 __Non-buffered mode__
 
@@ -93,7 +93,8 @@ Speeds below 100% allow to play in slow motion.
 
 #### Features ####
 
-__Postprocessing Shader__ Note: *buffered rendering __must__ be enabled to use this*
+__Postprocessing Shader__ 
+> Note: *buffered rendering __must__ be enabled to use this*
 
 Allows one to use custom shaders that add effects such as bloom and grayscale.
 
@@ -204,7 +205,7 @@ Types of Upscale algorithms:
 
 __Deposterize__
 
-[TODO: Really don't know what it do :/]
+Fixes small in-texture artifacts that may happen during upscaling
 
 #### Texture Filtering ####
 
@@ -283,15 +284,19 @@ On computers which do not have a dedicated GPU (Video card), a *Software rendere
 ### Audio ###
 
 __SFX volume__
+
 Controls volume of special effects. 
 
 __BGM volume__
+
 Controls background volume.
 
 __Enable Sound__
+
 Enable and disable all sounds.
 
 __Low latency audio__
+
 An experimental feature that might help reduce audio lag. It also generally causes stuttering and other audio distortion.
 
 <!-- Controls -->
@@ -299,9 +304,11 @@ An experimental feature that might help reduce audio lag. It also generally caus
 ### Controls ###
 
 __Control Mapping__
+
 Rebind PSP controls to keyboard, game pad and virtual buttons.
 
 __Haptic Feedback__
+
 If this is enabled, the device will vibrate every time a button is pressed.
 Useful in mobile devices for tactile feedback.
 
@@ -343,6 +350,7 @@ made visible or invisible by toggling the buttons.
 #### UI Language ####
 
 __Language__
+
 Change the default language of PPSSPP. 
 
 #### Emulation ####
@@ -422,10 +430,13 @@ PPSSPP logs information into separate channels based on where the log is origina
 ###### Language:
 
 __Load Language ini__
-[TODO]
+
+Reloads the current active language-file in /langs/ (en_En.ini for English eg.).
+Only useful if you have changed the language-file while ppsspp was still running.
 
 __Save Language ini__
-[TODO]
+
+Saves the current active language-file and adds untranslated strings to it.
 
 <!-- end Developer options-->
 
@@ -434,7 +445,11 @@ __Save Language ini__
 
 #### PSP Settings ####
 
+*The date and time format are displayed in several psp dialogs like the save and load dialogs and in some games.*
+<!-- maybe adding some games that are using these-->
+
 __Daylight Savings__
+
 It is used to enable and disable daylight savings in PPSSPP's time calculation.
 
 __Date Format__
@@ -442,21 +457,19 @@ __Date Format__
 It is used to change the date format. Supported formats are:
 
 
-__`YYYYMMDD`__ - eg: 2013 12 01 (1st December 2013)
+<b>`YYYYMMDD`</b> - eg: 2013 12 01 (1st December 2013)
 
-__`MMDDYYYY`__ - eg: 12 01 2013 (1st December 2013)
+<b>`MMDDYYYY`</b> - eg: 12 01 2013 (1st December 2013)
 
-__`DDMMYYYY`__ - eg: 01 12 2013 (1st December 2013)
-
-[TODO: Idk where this is used. Should write about what this is for]
+<b>`DDMMYYYY`</b> - eg: 01 12 2013 (1st December 2013)
 
 __Time format__
 
-It is used to change the time format. Supported formats are __`12 hours`__ and __`24 hours`__
+It is used to change the time format. Supported formats are <b>`12 hours`</b> and <b>`24 hours`</b>.
 
 __Conformation Button__
 
-By default, the PSP uses the __`X`__ action button to confirm actions. This can be changed to __`O`__.
+By default, the PSP uses the <b>`X`</b> action button to confirm actions. This can be changed to <b>`O`</b>.
 
 
 
