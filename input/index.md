@@ -44,7 +44,7 @@ __Buffered mode__
 
 This is the standard mode. The PSP can render to any location in its VRAM and use as either the scanout buffer (what you see on the screen) or textures. Many games use this to implement special effects, or simply to implement 30fps (you need to show the same buffer twice). We simulate this by allocating an OpenGL FBO for every PSP framebuffer location.
 
-Note: This option is mandatory for many games, including __Grand Theft Auto Liberty City Stories__ and __Grand Theft Auto Vice City Stories__, which show black screen without it.
+Note: This option is mandatory for many games, including __Grand Theft Auto Liberty City Stories__ and __Grand Theft Auto Vice City Stories__, which shows black screen without it.
 
 __Non-buffered mode__
 
@@ -56,7 +56,7 @@ Due to emulation bugs, some games are improved in non-buffered mode.
 
 __Read framebuffers to memory (CPU)__
 
-This option is a solution to fix some graphics issues in some games, but this option is slow. Games that do not need it may be worse with this option.
+This mode fixes graphical issues in some games, but it's very expensive as it copies the whole content into buffer and then coverts them into pixels through CPU. Games that do not need it may be worse with this option. Following are the games that apparently works with this mode:
 
 * __Breath of Fire 3__
 * __Danganronpa__
@@ -68,7 +68,7 @@ This option is a solution to fix some graphics issues in some games, but this op
 
 __Read framebuffers to memory (GPU)__
 
-This is the same as the option above, but this is faster because it uses GPU instead of CPU. However, it only works on PC and optimized for Nvidia cards.
+This is the same as the option above, but this is faster as it uses GPU to convert those pixels asynchronously. However, it only works on PC and optimized for Nvidia cards.
 
 
 #### Framerate control ####
@@ -104,6 +104,8 @@ Types of shaders:
 
 *`FXAA Antialiasing`*: Reduces jagged edges on 3D objects using Fast Approximate Anti-Aliasing (FXAA) algorithm.
 
+*`CRT Scanlines`*: Simulates CRT screen like effect by drawing horizontal lines that updates per second.
+
 *`Natural Colours`*: Slightly enhances contrast and colours.
 
 *`Grayscale`*: Renders in grayscale (black and white).
@@ -124,8 +126,14 @@ Types of shaders:
 
 *`AA-Color`*: Reduces jagged edges on screen with additional contrast and colours.
 
+*`Spline36 Upscalar`*: Scales the sprites using Spline algorithm. Note: It requires integer support in shaders which currently isn't supported by android GPUs.
+
 <!-- end shaders -->
 
+
+__Fullscreen(PC Only)__
+
+Causes PPSSPP to stretch it's size to that of the display while mantaining the aspect ratio of real PSP.
 
 __Stretch to display__
 
@@ -155,10 +163,21 @@ However, due to bugs, some games are fixed when this option is disabled:
 * __Dangan Ronpa__ It fixes the crashes.
 * __Tekken 5 Dark Resurrection__ It fixes the health bars.
 
+__Software Skinning__
+
+It gives a performance boost in some games that extensively uses skeletal animation on characters. It uses CPU to compute them which decreases their rendering time thus increasing performance. However, some games like *Monster Hunter* games slows down with it.
 
 __Vertex Cache__
 
 This gives a performance boost when enabled as it skips few calculations on geometry, disable it if you see strange graphical glitches. Performance improvement will depend on game and GPU.
+
+__Lazy texture caching__
+
+[TODO: Explain]
+
+__Retain changed textures__
+
+[TODO: Explain]
 
 
 __Low quality Spine / Bezier Curves__
@@ -229,6 +248,10 @@ __Texture Filter__
 #### Hack Settings ####
 
 These options are workarounds for things we don't emulate properly in some specific games, or speed improvements that may cause problems. Be careful, most of these options break games.
+
+__Timer Hack__
+
+It trades speed for accuracy by not stepping the emulated PSP CPU in correct timing. Enabling it can give performance increase in some games. Try experimenting with it.
 
 __Disable Alpha Test__
 
@@ -338,6 +361,12 @@ made visible or invisible by toggling the buttons.
 <!-- TODO: make this explanation better -->
 <!-- system -->
 
+#### On-screen touch controls: ####
+
+__Ignore Windows Key__
+
+[TODO: Really don't know what is this.. maybe Henrik knows?]
+
 ### System ###
 
 #### UI Language ####
@@ -392,8 +421,6 @@ It is used to enable or disable cheats in PPSSPP.
 
 This section of PPSSPP contains tools that are useful for PPSSPP developers. Be careful when changing options in this section.
 
-###### General:
-
 __Dynarec (JIT)__
 
 To emulate advanced systems like the PSP fast, the emulator needs to translate the machine code language of the PSP to the machine code language of your PC or mobile device at runtime. This is done with a "Just-In-Time recompiler" or JIT, also known as a Dynarec. PPSSPP has JITs for x86 and ARM.
@@ -431,8 +458,47 @@ __Save Language ini__
 
 *****
 
+#### General ####
+
+__Check for new versions of PPSSPP__
+
+Enabling this option will automatically check for new version of PPSSPP.
+
+__Clear Recent games list__
+
+This will clear the recent games screen.
+
+__Restore Default Settings__
+
+This restores the default settings provided by PPSSPP.
+
+__Auto Load Newest Savestate__
+
+Enabling this will automically loads the last saved savestate.
+
+__Enable compatibility server reports__
+
+Enabling this will send the log reports to the PPSSPP server.
+
+#### Networking ####
+
+__Enable networking/wlan(beta)__
+
+Enabling this will enable wlan (that's what it says, anyway) [TODO: Explain better..]
 
 #### PSP Settings ####
+
+__PSP Model__
+
+Changes emulated PSP model. [TODO: Explain the difference..]
+
+__Change nickname__
+
+It changes the nickname which is used by games.
+
+__Screenshots as PNG__
+
+It allows you to take screenshots in .png format.
 
 __Daylight Savings__
 It is used to enable and disable daylight savings in PPSSPP's time calculation.
@@ -465,6 +531,22 @@ By default, the PSP uses the __`X`__ action button to confirm actions. This can 
 
 Changelog:
 ----------
+
+##Version: 0.9.6##
+
+* Large general speed improvements and assorted bug fixes
+* "Software Skinning" option which speeds up many games with animated 3D characters (but may slow down a few, like Monster Hunter games - experiment with turning it off)
+* Various fixes around stencil/alpha, reducing glow problems in Wipeout and Gods Eater Burst.
+* Timing improvements making more games run at the correct FPS, also fixing some audio issues
+* More debugger features
+* Option for four-way touch dpad, avoiding diagonal dpad issues
+* Better looking and individually resizable touch controls
+* Add ability to switch UMD in multi-disc games (works for most)
+* Emulate PSP-2000 rather than the 1000 model by default. Not much different in practice.
+* Automatic install of games from ZIP files, like demos and many homebrew.
+* VERY basic ad-hoc online play support, to be improved in future versions. See below.
+* Software renderer improvements
+
 
 ##Version: 0.9.5##
 
