@@ -44,7 +44,7 @@ __Buffered mode__
 
 This is the standard mode. The PSP can render to any location in its VRAM and use as either the scanout buffer (what you see on the screen) or textures. Many games use this to implement special effects, or simply to implement 30fps (you need to show the same buffer twice). We simulate this by allocating an OpenGL FBO for every PSP framebuffer location.
 
-Note: This option is mandatory for many games, including __Grand Theft Auto Liberty City Stories__ and __Grand Theft Auto Vice City Stories__, which shows black screen without it.
+Note: This option is mandatory for many games, including __Grand Theft Auto Liberty City Stories__ and __Grand Theft Auto Vice City Stories__, which show black screen without it.
 
 __Non-buffered mode__
 
@@ -56,7 +56,7 @@ Due to emulation bugs, some games are improved in non-buffered mode.
 
 __Read framebuffers to memory (CPU)__
 
-This mode fixes graphical issues in some games, but it's very expensive as it copies the whole content into buffer and then coverts them into pixels through CPU. Games that do not need it may be worse with this option. Following are the games that apparently works with this mode:
+This mode fixes graphical issues in some games, but it's very expensive as it copies the whole content into buffer and then covert them into pixels through CPU. Games that do not need it may be worse with this option. Following are the games that apparently works with this mode:
 
 * __Breath of Fire 3__
 * __Danganronpa__
@@ -133,7 +133,7 @@ Types of shaders:
 
 __Fullscreen(PC Only)__
 
-Causes PPSSPP to stretch it's size to that of the display while mantaining the aspect ratio of real PSP.
+Causes PPSSPP to stretch its size to that of the display while mantaining the aspect ratio of real PSP.
 
 __Stretch to display__
 
@@ -365,7 +365,7 @@ made visible or invisible by toggling the buttons.
 
 __Ignore Windows Key__
 
-[TODO: Really don't know what is this.. maybe Henrik knows?]
+It disables the Windows key ingame (so you don't pop up the Start menu by accident).
 
 ### System ###
 
@@ -462,7 +462,7 @@ __Save Language ini__
 
 __Check for new versions of PPSSPP__
 
-Enabling this option will automatically check for new version of PPSSPP.
+Enabling this option will automatically check for new version of PPSSPP, and inform the user when one is available.
 
 __Clear Recent games list__
 
@@ -474,7 +474,7 @@ This restores the default settings provided by PPSSPP.
 
 __Auto Load Newest Savestate__
 
-Enabling this will automically loads the last saved savestate.
+Enabling this will automically load the last saved savestate.
 
 __Enable compatibility server reports__
 
