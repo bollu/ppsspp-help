@@ -21,13 +21,128 @@ many more people have contributed improvements.
 
 How to play games:
 ------------------
-To be Constructed
+To legally turn your PSP games into .ISO files, you need to install "Custom Firmware" on your PSP. Google for that. Then follow these steps:
+* Insert the UMD into your PSP.
+* Connect your PSP to your PC with a USB cable.
+* At the PSP menu, press Select. In the menu that pops up (only on Custom Firmware), choose to UMD as USB Device.
+* Still in the PSP menu, choose USB Connection in the Settings menu (to the left).
+* On your PC, a folder will pop up, containing a virtual ISO file. To copy the game to your PC, simply drag this to somewhere on your harddrive and the copy will start. Done!
 
+There are also tools to turn ISO files into CSO (compressed ISO) files to save space.
+
+If you have digital downloads on your PSP, they can be used directly on PPSSPP. Just copy the EBOOT.PBP over. Note that this has not been tested as much as ISO loading so there may still be issues with some games.
 <a name = 'faq'></a>
 
 FAQ:
 ----
-To be Constructed
+__How to get games?__
+
+Again, we don't support piracy. Please read the section "How to play games".
+
+__My save states won't load in 0.9.5!__
+
+Save states are tricky in an emulator that's not fully completed yet, as we haven't found all the state we need to save. Before 0.9.5, we would just copy all the state straight to an unstructured file. As the amount of state differed between the versions, no two were really compatible. From 0.9.5 and forwards, we have created a structured format where we can add new sections as needed.
+
+So currently it's like this:
+
+States from versions before 0.9.5 will never load in a later version
+States from 0.9.5 and onwards WILL load in future versions!
+That means that your 0.9.1 save states is stuck on 0.9.1, unfortunately.
+
+There is however a workaround that often works:
+
+Load your state in 0.9.1
+Save your game using real in-game saves (a save point in an RPG or a save choice in menu or something)
+Copy your Memstick/PSP/SAVEDATA directory from 0.9.1 to 0.9.5
+Load the real save in 0.9.5
+Now you can keep save-stating.
+This is unfortunately quite tricky to do on Android (but not too hard on PC).
+
+__What does this option do?__
+
+PPSSPP has lots of options. All of them improve some game for someone, otherwise they would have been deleted by now - I try to keep the number of options sane at least.
+
+__Do I need a BIOS file to run PPSSPP, like with PSX emulators?__
+
+No. PPSSPP simulates the BIOS (not really a BIOS on the PSP, more like an internal OS).
+
+__Where can I get PPSSPP for iOS?__
+
+You need a jailbroken iOS device, running iOS 6 or later. See the Downloads page for more info.
+
+__PPSSPP is awesome! How do I donate to the project?__
+
+Buy PPSSPP Gold! Available for Windows and Android. It's the same as the regular version functionally (see Why Gold?), but by buying it you support the development of PPSSPP.
+
+__What is the JIT?__
+
+To emulate advanced systems like the PSP fast, the emulator needs to translate the machine code language of the PSP to the machine code language of your PC or mobile device at runtime. This is done with a "Just-In-Time recompiler" or JIT, also known as a Dynarec. PPSSPP has JITs for x86 and ARM.
+
+For a JIT to function, an app needs to have the ability to generate machine code at runtime. This is allowed on Windows, Mac, Linux and Android, while it is completely disallowed on non-jailbroken iOS and on App Store Mac apps, and on Windows Phone 8.
+
+__How do I install game DLC?__
+
+Install it exactly the same way as you would on a PSP, that is, copy the files to PSP/GAME or PSP/SAVEDATA (depending on the DLC) on the memory stick. In the Android version of PPSSPP, the memory stick is simply the SD card or USB storage of your phone, create a PSP folder in the root of that. On all other versions, the memory stick is the "memstick" subdirectory in the PPSSPP folder.
+
+__Why is PPSSPP not available for Windows Phone?__
+
+Windows Phone is, like unjailbroken iOS, a very restrictive environment where apps are not allowed to generate code at runtime. This prevents the JIT to work, which means that even if we ported the emulator, it would run very slow.
+
+Also, OpenGL is not available on Windows Phone, making porting a big project which isn't worth it because of the low possible speed we can get.
+
+In addition, I don't have a Windows Phone device.
+
+__Will PPSSPP be able to emulate the PSP Vita in the future?__
+
+PSP Vita is a completely different platform and it's still very secure, meaning that there's no way to decrypt games, making any emulation attempt impossible unless this changes. Also, it's far more powerful so emulating it at full speed on an Android phone is years off anyway.
+
+__Why is PPSSPP so fast?__
+
+You're probably a Windows user. Because x86 CPUs are damn fast, PC GPU drivers are good, we have a fairly advanced x86 JIT, it's written in C++ and I rock.
+
+__Why is PPSSPP so slow?__
+
+You probably run PPSSPP on a mobile device. The ARM JIT is basic and needs improvement, and these devices simply are not very strong yet, no matter what marketing tells you, or their graphics drivers SUCK. An example of the latter would be the Nexus S.
+
+__Why is the emulator called PPSSPP?__
+
+Why not?
+
+__The Windows version doesn't start!__
+
+You may need to install the VC2010 redist (some DLL files). Also, if it still doesn't work, try installing the latest DirectX and OpenGL drivers for your graphics card.
+
+__Can I use my gamepad to control PPSSPP?__
+
+PPSSPP has built-in XInput support on Windows so it will "just work" with any Xbox 360 pad that you plug into your PC. On Android the gamepad situation is not very good yet, the Xperia Play buttons will work but not the touch sticks, for example.
+
+__What are the PC CPU and GPU requirements?__
+
+Any reasonably modern CPU with support for SSE2 will be just fine, and any GPU that can handle OpenGL 2.0 should have no issues. You should make sure to install the latest graphics drivers available though. Windows XP or later is required, Windows 7 or 8 is recommended.
+
+__Where are the "pre-x.y" versions everyone is talking about in the forum?__
+
+<div onclick="location.href='http://buildbot.orphis.net/ppsspp/';" >Here</div>
+
+__What are CSO files?__
+
+CSO are compressed ISO files that can be played directly, decompressing on the fly. Very useful to save space on your Android device, for example. There are a large number of programs around the web that can create CSO files from ISOs, just Google for it.
+
+__I've managed to fix a bug, how do I get the fix into PPSSPP?__
+
+If you know GitHub, you know the drill - just make a pull request with the changes, in a clone of the PPSSPP repository. If you don't know Git(Hub), feel free to ask for help.
+
+__My favorite game doesn't work in PPSSPP. What can I do?__
+
+You can either help out with fixing it, or wait until someone does.
+
+__The Windows version won't run, missing XInput.dll__
+
+Install DirectX.
+
+__Where's the MacOSX build?__
+
+Nobody has volunteered to prepare and package one yet. Contact me if you're interested.
 
 <a name = 'settings'></a>
 
@@ -72,6 +187,10 @@ This is the same as the option above, but this is faster as it uses GPU to conve
 
 
 #### Framerate control ####
+
+__Auto FrameSkip__
+
+Allows the frames to skip automatically when the game can't reach 100% VPS. Note: You need to specify the max number of frames to skip in Frameskipping before using it.
 
 __Frameskipping__
 
@@ -154,7 +273,7 @@ Setting it to *Auto* will make PPSSPP use the resolution that is near the window
 
 __Vsync__ 
 
-The display of your device refreshes many times per second (usually 60 times per second). If this option is enabled, then PPSSPP will only draw during every refresh. This will cause it to look much smoother. However, this requires great performance [TODO - explain how FPS drops by half if a frame is missed]. Disabling this option provides a performance boost.
+The display of your device refreshes many times per second (usually 60 times per second). If this option is enabled, then PPSSPP will only draw during every refresh. This will cause it to look much smoother. However, this is bit expensive as it forces the device to run at same refresh rate. If you are getting low performance with it then disable it.
 
 __Hardware Transform__
 
@@ -173,11 +292,11 @@ This gives a performance boost when enabled as it skips few calculations on geom
 
 __Lazy texture caching__
 
-[TODO: Explain]
+Causes glitches in some games like Danganronpa and Growlanser but increases performance. [TODO: Explain]
 
 __Retain changed textures__
 
-[TODO: Explain]
+Speeds up Popolocrois [TODO: Explain]
 
 
 __Low quality Spine / Bezier Curves__
@@ -215,7 +334,7 @@ Types of Upscale algorithms:
 
 *`xBRZ`*:  Scales the texture based on pattern recognition similar to HQx.
 
-*`Hybrid`*: Scales the textures.... [TODO: the effect looks familiar to Bicubic :/]
+*`Hybrid`*: Scales the textures bilinearly.
 
 *`Bicubic`*:  Scales the textures using spline equations.
 
@@ -223,7 +342,7 @@ Types of Upscale algorithms:
 
 __Deposterize__
 
-[TODO: Really don't know what it do :/]
+Smoothes posterized gradients from low-color-depth (e.g. 444, 565, compressed) textures when texture scaling is enabled.
 
 #### Texture Filtering ####
 
@@ -232,7 +351,7 @@ like little lines at the boundaries of textures. This can sometimes be worked ar
 
 __Anisotropic Filtering__:
 
-[TODO]
+Enhances the image quality, clarity and crispness of textured objects. This is generally free on GPU and doesn't decrease performance.
 
 __Texture Filter__
 
@@ -531,6 +650,20 @@ By default, the PSP uses the __`X`__ action button to confirm actions. This can 
 
 Changelog:
 ----------
+
+##Version: 0.9.7##
+
+* Several scheduling and audio fixes, fixing black screens in Yu Gi Oh games among other things.
+* Screen rotation support on Android
+* Initial multitouch support on Windows 8 for on-screen controls.
+* Large improvements to the software renderer (still not really playable, but looks right more often than not)
+* Bugfixes and new VPL allocator, fixing Pangya Golf performance problems.
+* Some mpeg/video playback fixes, fixing Parappa The Rapper and others.
+* Fix save state bugs causing incompatibility between 32 and 64-bit platforms.
+* Symbol map/debugger improvements
+Depth buffer copy, fixing Jeanne D'arc. May cause minor slowdowns though, this will be worked around in the future.
+* MsgDialog fixes
+
 
 ##Version: 0.9.6##
 
